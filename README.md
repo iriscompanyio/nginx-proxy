@@ -1,12 +1,14 @@
 # Ejecutar
 1. Clonar proyecto
+2. Clonar el archivo ```.env.template``` y renombrarlo a ```.env```
+3. Llenar las variables de entorno
 
-2. Crear la red docker
+4. Crear la red docker
 ```
-docker network create services
+docker network create network_name
 ```
 
-3. Crear el contenedor
+5. Crear el contenedor
 ```
 docker-compose up -d
 ```
