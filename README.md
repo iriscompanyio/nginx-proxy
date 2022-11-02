@@ -1,5 +1,5 @@
 # Ejecutar
-1. Clonar proyecto
+1. Clonar el repositorio
 2. Clonar el archivo ```.env.template``` y renombrarlo a ```.env```
 3. Llenar las variables de entorno
 
