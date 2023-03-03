@@ -5,7 +5,7 @@
 
 4. Crear la red docker
 ```
-docker network create network_name
+docker network create nginx-proxy
 ```
 
 5. Crear el contenedor

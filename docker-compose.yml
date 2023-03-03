@@ -1,9 +1,9 @@
-version: '3'
+version: '3.8'
 
 networks:
-  outside:
-    external:
-      name: ${NETWORK_NAME}
+  nginx-proxy:
+    name: nginx-proxy
+    external: true
 
 services:
   nginx-proxy:
@@ -11,25 +11,11 @@ services:
     image: jwilder/nginx-proxy
     restart: unless-stopped
     ports:
-      - "80:80"
-      - "443:443"
+      - "80:80/tcp"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - /home/$USER$/www/letsencrypt:/etc/nginx/certs:rw
-      - /etc/nginx/vhost.d
+      - ./my-proxy.conf:/etc/nginx/conf.d/my-proxy.conf:ro
+      - ./vhost.d:/etc/nginx/vhost.d:rw
       - /usr/share/nginx/html
-    labels:
-      - com.githun.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy
     networks:
-      - outside
-  letsencrypt:
-    container_name: letsencrypt
-    image: jrcs/letsencrypt-nginx-proxy-companion
-    restart: unless-stopped
-    volumes:
-      - /home/$USER$/www/letsencrypt:/etc/nginx/certs:rw
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    volumes_from:
-      - nginx-proxy:rw
-    networks:
-      - outside
+      - nginx-proxy
