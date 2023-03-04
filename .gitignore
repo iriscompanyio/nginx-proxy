@@ -2,3 +2,4 @@
 vhost.d/*_location
 vhost.d/default
 my-proxy.conf
+certs
